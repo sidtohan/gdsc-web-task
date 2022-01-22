@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500&family=Readex+Pro:wght@500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500&family=Readex+Pro:wght@500;600;700&display=swap");
 
 /* BASIC RESET CSS  */
 * {
@@ -18,6 +18,7 @@ header {
   padding: 30px 60px;
 
   color: #eeeeff;
+  background-color: #20202c;
 
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -45,8 +46,62 @@ header > nav {
 
   font-family: "Readex Pro", Arial, Helvetica, sans-serif;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 25px;
+}
+
+.navigation-option {
+  cursor: pointer;
+}
+
+.navigation-option.current {
+  color: #06d6a0;
+}
+/* SECTIONS  */
+section {
+  padding: 80px;
+  padding-top: 200px;
+}
+
+/* HOME  */
+#home {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-row-gap: 50px;
+
+  justify-items: center;
+  align-items: start;
+}
+
+#home-heading {
+  color: #06d6a0;
+  font-family: "Readex Pro", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 70px;
+  line-height: 87px;
+
+  grid-row: 1/2;
+  grid-column: 1/5;
+}
+
+#home-info {
+  font-family: "Montserrat Alternates", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 37px;
+
+  color: #eeeeff;
+  grid-row: 2/4;
+  grid-column: 1/4;
+}
+
+#home-logo {
+  display: block;
+  grid-column: 5/9;
+  grid-row: 1/4;
 }
 /* BODY  */
 body {
