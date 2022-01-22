@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500&family=Readex+Pro:wght@500;700&display=swap");
+
+/* BASIC RESET CSS  */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+ul,
+ol {
+  list-style: none;
+}
+
+/* NAV  */
+header {
+  width: min(2020px, 100%);
+  position: fixed;
+  padding: 30px 60px;
+
+  color: #eeeeff;
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+}
+
+.navigation-name {
+  font-family: "Montserrat Alternates", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 35px;
+  line-height: 43px;
+  letter-spacing: 0.05em;
+}
+
+header > nav {
+  grid-column: 4/6;
+}
+
+.navigation-options {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+
+  font-family: "Readex Pro", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 25px;
+}
+/* BODY  */
+body {
+  background-color: #22223b;
+}
+body,
+html {
+  width: 100%;
+}
