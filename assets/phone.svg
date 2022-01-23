@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="811.42621"
+   height="389"
+   viewBox="0 0 811.42621 389"
+   fill="none"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="phone.svg"
+   inkscape:version="1.1.1 (3bf5ae0, 2021-09-20)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs12" />
+  <sodipodi:namedview
+     id="namedview10"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="0.5725929"
+     inkscape:cx="375.48492"
+     inkscape:cy="164.1655"
+     inkscape:window-width="1920"
+     inkscape:window-height="999"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg8" />
+  <rect
+     y="0"
+     width="389"
+     height="811.42621"
+     rx="62"
+     transform="rotate(-90)"
+     fill="#eeeeff"
+     id="rect2"
+     x="-389"
+     style="stroke-width:1.03532" />
+  <rect
+     x="39.236736"
+     y="52"
+     width="677.18945"
+     height="291"
+     rx="25.202843"
+     fill="#36363f"
+     id="rect4"
+     style="stroke-width:1.04679" />
+  <circle
+     cx="766.92621"
+     cy="194.5"
+     r="30.5"
+     fill="#06d6a0"
+     id="circle6" />
+</svg>
