@@ -44,16 +44,19 @@ const allRefs = (() => {
   const navBarOptions = navBar.querySelectorAll(".navigation-option");
 
   const home = document.querySelector("#home");
+
   const skills = document.querySelector("#skills");
   const skillsHeading = skills.querySelector(".section-heading");
+  const skillsInfo = skills.querySelector(".skills-info");
   return {
     navBar,
-    home,
-    skills,
-    skillsHeading,
     navBarName,
     navBurger,
     navBarOptions,
+    home,
+    skills,
+    skillsHeading,
+    skillsInfo,
   };
 })();
 
@@ -85,7 +88,7 @@ const navBarLogic = (() => {
         return window.scrollTo(0, 0);
       }
       // if home, then we go to the top of the document
-      
+
       const section = document.querySelector(`#${current}`);
       section.scrollIntoView({
         behavior: "smooth",
@@ -96,6 +99,17 @@ const navBarLogic = (() => {
 })();
 
 const pageBuilder = (() => {
+  const skillList = [
+    { name: "HTML5", mastery: 95 },
+    {
+      name: "CSS3",
+      mastery: 95,
+    },
+    {
+      name: "Javascript",
+      mastery: 100,
+    },
+  ];
   const waitForMs = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   const options = {
     rootMargin: "0px",
@@ -126,6 +140,12 @@ const pageBuilder = (() => {
       if (entry.isIntersecting) {
         if (entry.target.id == "skills") {
           if (skillVisited) return;
+
+          // adding the skill divs here
+          skillList.forEach((skill) => {
+            const newDiv = document.createElement("div");
+            newDiv.classList.add("skill-div");
+          });
           skillVisited = true;
           const name = "SKILLS";
           let length = 0;
@@ -154,7 +174,7 @@ const pageBuilder = (() => {
   );
   const sectionObserver = new IntersectionObserver(sectionObserverCallback, {
     ...options,
-    threshold: 0.1,
+    threshold: 0.3,
   });
 
   const addHomeObserver = (element) => {
