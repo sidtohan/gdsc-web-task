@@ -1,10 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500&family=Readex+Pro:wght@500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500;600&family=Montserrat:wght@800&family=Readex+Pro:wght@400;500;600;700&display=swap");
 
 /* BASIC RESET CSS  */
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+
+  backface-visibility: hidden;
 }
 ul,
 ol {
@@ -13,257 +15,120 @@ ol {
 
 /* NAV  */
 header {
-  width: 100%;
   position: fixed;
-  padding: 30px 60px;
-
-  color: #eeeeff;
-  background-color: #20202c;
-
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
+  justify-content: center;
   align-items: center;
 
-  z-index: 2;
+  padding: 20px 0;
+  width: 100%;
 }
 
 .navigation-name {
-  font-family: "Montserrat Alternates", Arial, Helvetica, sans-serif;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 35px;
-  line-height: 43px;
-  letter-spacing: 0.05em;
-}
-
-header > nav {
-  grid-column: 4/6;
+  font-family: "Readex Pro", Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 400;
+  font-size: 30px;
 }
 
 .navigation-options {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 20px;
-
-  font-family: "Readex Pro", Arial, Helvetica, sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 25px;
-}
-
-.navigation-option {
-  position: relative;
-  cursor: pointer;
-  transition: 0.42s ease-in-out;
-}
-
-.navigation-option.current {
-  color: #06d6a0;
-}
-
-/* SECTIONS  */
-section {
-  padding: 80px;
-  padding-top: 200px;
-
-  transform: translateY(-50%);
-  opacity: 0;
-
-  transition: 0.42s ease-in-out;
-
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  grid-row-gap: 50px;
-
-  justify-items: center;
-  align-items: start;
-
-  width: 1500px;
-}
-
-section.current {
-  animation: fade-in-top 0.5s ease-in-out forwards;
-}
-section.leave {
-  animation: fade-in-bottom 0.3s ease-in-out;
+  width: 0;
+  visibility: hidden;
 }
 
 /* HOME  */
-#home-heading {
-  color: #06d6a0;
-  font-family: "Readex Pro", Arial, Helvetica, sans-serif;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 70px;
-  line-height: 87px;
+#home {
+  width: 80%;
+  padding-top: 200px;
+  display: grid;
 
-  grid-row: 1/2;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+
+  grid-row-gap: 40px;
+}
+
+.home-heading {
+  font-family: "Readex Pro", Verdana, Geneva, Tahoma, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 50px;
+
+  color: #1a535c;
   grid-column: 1/5;
-
-  transform: translateX(-50%);
-  opacity: 0;
 }
 
-#home-heading.show {
-  animation: fade-in-left 0.3s ease-in-out forwards;
-}
-
-#home-info {
-  font-family: "Montserrat Alternates", Arial, Helvetica, sans-serif;
+.home-info {
+  font-family: "Montserrat Alternates", Verdana, Geneva, Tahoma, sans-serif;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 400;
   font-size: 30px;
-  line-height: 37px;
 
-  color: #eeeeff;
-  grid-row: 2/4;
-  grid-column: 1/4;
+  grid-column: 1/3;
+  align-self: center;
+}
 
+/* SKILLS  */
+#skills {
+  padding-top: 200px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
-
-  opacity: 0;
+  align-items: center;
 }
 
-#home-info.show {
-  animation: fade-in-normal 0.42s ease-in-out forwards;
-}
-#home-laptop {
-  display: block;
-  grid-column: 5/9;
-  grid-row: 1/4;
+.section-heading {
+  font-family: "Montserrat", Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 800;
+  font-size: 200px;
 
-  transform: scale(0);
-}
-
-#home-laptop.show {
-  animation: pop-in 0.42s ease-in-out forwards;
-}
-
-.home-button {
-  z-index: 1;
-  display: block;
-  border: none;
-  background-color: #06d6a0;
-
-  font-family: "Montserrat Alternates", Arial, Helvetica, sans-serif;
-  font-size: 20px;
-  font-weight: 600;
-  color: #22223b;
-  padding: 15px 20px;
-  width: 170px;
-
-  border-radius: 10px;
-
-  grid-column: 3/4;
-  justify-self: center;
-}
-
-#home > button:nth-child(4) {
-  grid-row: 4/5;
-  align-self: end;
-}
-
-#home > button:nth-child(5) {
-  grid-row: 5/6;
-  align-self: start;
-}
-
-#home-phone {
-  display: block;
-  grid-row: 4/6;
-  grid-column: 1/11;
-
-  transform: scale(0);
-}
-#home-phone.show {
-  animation: pop-in 0.42s ease-in-out forwards;
-}
-
-/* HOBBIES  */
-#hobbies-heading {
-  color: #06d6a0;
-  font-family: "Readex Pro", Arial, Helvetica, sans-serif;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 120px;
-  line-height: 87px;
-
-  grid-row: 1/2;
-  grid-column: 2/7;
+  color: #1a535c;
 }
 /* BODY  */
+::-webkit-scrollbar {
+  display: none;
+}
 body {
-  overflow-x: hidden;
-  background-color: #22223b;
+  background-color: #f7fff7;
   display: flex;
   flex-direction: column;
-
   align-items: center;
-  scroll-behavior: smooth;
 }
+
 body,
 html {
+  padding: 0;
+  margin: 0;
+
   width: 100%;
+  scroll-behavior: smooth;
 }
-
-.highlight {
-  color: #06d6a0;
-}
-
 /* ANIMATIONS  */
-@keyframes fade-in-normal {
-  to {
-    opacity: 1;
-  }
-  from {
-    opacity: 0;
-  }
-}
-@keyframes fade-in-top {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  from {
-    opacity: 0;
-    transform: translateY(-50%);
-  }
-}
-
-@keyframes fade-in-bottom {
-  to {
-    transform: translateY(50%);
-    opacity: 0;
-  }
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fade-in-left {
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  from {
-    transform: translateX(-50%);
-    opacity: 0;
-  }
-}
 
 @keyframes pop-in {
   0% {
-    transform: scale(0);
+    transform: scaleX(1);
+  }
+}
+@keyframes show-from-left {
+  0% {
+    transform: translateX(+50px);
+    opacity: 0;
   }
   50% {
-    transform: scale(1.1);
+    transform: translateX(0) scaleX(0.8);
+    transform-origin: left;
+    opacity: 1;
   }
+
   100% {
-    transform: scale(1);
+    transform: translateX(0) scaleX(1);
+    opacity: 1;
   }
+}
+
+.hidden {
+  transform: translateX(50);
+  opacity: 0;
+}
+.active {
+  animation: show-from-left 0.5s ease-in-out forwards;
 }
