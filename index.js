@@ -80,6 +80,16 @@ const navBarLogic = (() => {
 
       currentOptionDiv = option;
       currentOptionDiv.classList.add("current");
+
+      if (current === "home") {
+        return window.scrollTo(0, 0);
+      }
+      // if home, then we go to the top of the document
+      
+      const section = document.querySelector(`#${current}`);
+      section.scrollIntoView({
+        behavior: "smooth",
+      });
     })
   );
   return { editNav };
@@ -144,7 +154,7 @@ const pageBuilder = (() => {
   );
   const sectionObserver = new IntersectionObserver(sectionObserverCallback, {
     ...options,
-    threshold: 0.5,
+    threshold: 0.1,
   });
 
   const addHomeObserver = (element) => {

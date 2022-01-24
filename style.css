@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500;600&family=Readex+Pro:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Montserrat+Alternates:wght@400;500;600&family=Readex+Pro:wght@400;500;600;700;800&display=swap");
 
 /* BASIC RESET CSS  */
 * {
@@ -15,9 +15,9 @@ ol {
 
 /* SECTION COMMON  */
 .section-heading {
-  font-family: "Readex Pro", Verdana, Geneva, Tahoma, sans-serif;
-  font-weight: 800;
-  font-size: 120px;
+  font-family: "Poppins", Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 700;
+  font-size: 130px;
 
   color: #6320ee;
 
@@ -68,13 +68,13 @@ header {
 
 .navigation-options {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   font-family: "Montserrat Alternates", Verdana, Geneva, Tahoma, sans-serif;
   font-weight: 600;
   color: #232020;
 
   gap: 30px;
-  font-size: 20px;
+  font-size: 23px;
 }
 
 .navigation-option {
@@ -146,6 +146,14 @@ header.sticky + #home {
   align-self: center;
 }
 
+.home-heading.hidden {
+  transform: translateY(-50px);
+  opacity: 0;
+}
+
+.home-heading.active {
+  animation: show-from-top 0.5s ease-in-out forwards;
+}
 .home-info {
   font-family: "Montserrat Alternates", Verdana, Geneva, Tahoma, sans-serif;
   font-style: normal;
@@ -248,6 +256,23 @@ html {
   }
 }
 
+@keyframes show-from-top {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(0) scaleY(0.9);
+    transform-origin: bottom;
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(0) scaleY(1);
+    transform-origin: bottom;
+    opacity: 1;
+  }
+}
 @keyframes show-from-left {
   0% {
     transform: translateX(-50px);
