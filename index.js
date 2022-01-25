@@ -131,21 +131,8 @@ const pageBuilder = (() => {
   const skillsObserverCallback = (entries, observer) => {
     entries.forEach(async (entry) => {
       if (entry.isIntersecting) {
-      }
-    });
-  };
-
-  const sectionObserverCallback = (entries, observer) => {
-    entries.forEach(async (entry) => {
-      if (entry.isIntersecting) {
-        if (entry.target.id == "skills") {
+        if (entry.target.className === "section-heading") {
           if (skillVisited) return;
-
-          // adding the skill divs here
-          skillList.forEach((skill) => {
-            const newDiv = document.createElement("div");
-            newDiv.classList.add("skill-div");
-          });
           skillVisited = true;
           const name = "SKILLS";
           let length = 0;
@@ -167,21 +154,15 @@ const pageBuilder = (() => {
       }
     });
   };
+
   const homeObserver = new IntersectionObserver(homeObserverCallback, options);
   const skillsObserver = new IntersectionObserver(
     skillsObserverCallback,
     options
   );
-  const sectionObserver = new IntersectionObserver(sectionObserverCallback, {
-    ...options,
-    threshold: 0.3,
-  });
 
   const addHomeObserver = (element) => {
     homeObserver.observe(element);
-  };
-  const addSectionObserver = (section) => {
-    sectionObserver.observe(section);
   };
 
   const addSkillsObserver = (element) => {
@@ -192,7 +173,6 @@ const pageBuilder = (() => {
     addHomeObserver,
     addSkillsObserver,
     // addHobbiesObserver,
-    addSectionObserver,
   };
 })();
 
@@ -204,7 +184,9 @@ const observeAllSections = () => {
         pageBuilder.addHomeObserver(element);
       }
     } else if (section.id === "skills") {
-      pageBuilder.addSectionObserver(section);
+      for (let element of section.children) {
+        pageBuilder.addSkillsObserver(element);
+      }
     }
   });
 };

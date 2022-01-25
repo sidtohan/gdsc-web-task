@@ -20,7 +20,8 @@ ol {
   font-size: 130px;
 
   color: #6320ee;
-
+  width: 413px;
+  height: 196px;
   align-self: flex-start;
 }
 
@@ -198,7 +199,7 @@ header.sticky + #home {
 
 /* SKILLS  */
 #skills {
-  padding-top: 150px;
+  padding-top: 120px;
 
   display: flex;
   flex-direction: column;
@@ -302,6 +303,8 @@ html {
   100% {
     transform: scale(1);
     transform-origin: center;
+
+    box-shadow: #6320ee 0 0 35px 0;
   }
 }
 .hidden {
