@@ -11,16 +11,24 @@ const allRefs = (() => {
   const skills = document.querySelector("#skills");
   const skillsHeading = skills.querySelector(".section-heading");
   const skillsInfo = skills.querySelector(".skills-info");
+
+  const hobbies = document.querySelector("#hobbies");
+  const hobbiesHeading = hobbies.querySelector(".section-heading");
   return {
     navBar,
     navBarName,
     navBurger,
     navBarOptions,
+
     home,
+
     skills,
     skillsHeading,
     skillsInfo,
     sections,
+
+    hobbies,
+    hobbiesHeading,
   };
 })();
 
@@ -48,10 +56,6 @@ const navBarLogic = (() => {
         section.scrollIntoView();
       }
       current = option.classList[1];
-      currentOptionDiv.classList.remove("current");
-
-      currentOptionDiv = option;
-      currentOptionDiv.classList.add("current");
 
       if (current === "home") {
         return window.scrollTo(0, 0);
@@ -85,6 +89,97 @@ const navBarLogic = (() => {
 })();
 
 const pageBuilder = (() => {
+  let skillHeadingVisited = false;
+  let hobbiesHeadingVisited = false;
+  let hobbiesInfoVisited = false;
+
+  const waitForMs = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  const options = {
+    rootMargin: "0px",
+    threshold: 1.0,
+  };
+
+  const headingTyper = async (name, heading) => {
+    let length = 0;
+    while (length < name.length) {
+      const newSpan = document.createElement("span");
+      newSpan.classList.add("section-heading-letter");
+      newSpan.classList.add("init");
+
+      // this listener removes the init class
+      newSpan.addEventListener("animationend", (event) => {
+        newSpan.classList.remove("init");
+      });
+      newSpan.textContent = name[length++];
+      heading.appendChild(newSpan);
+
+      await waitForMs(50);
+    }
+  };
+
+  const homeObserverCallback = (entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove("hidden");
+        entry.target.classList.add("active");
+      }
+    });
+  };
+
+  const skillsObserverCallback = (entries, observer) => {
+    entries.forEach(async (entry) => {
+      if (entry.isIntersecting) {
+        if (entry.target.className === "section-heading") {
+          if (skillHeadingVisited) return;
+          skillHeadingVisited = true;
+          headingTyper("SKILLS", allRefs.skillsHeading);
+        } else {
+          entry.target.classList.add("show");
+        }
+      }
+    });
+  };
+
+  const hobbiesObserverCallback = (entries, observer) => {
+    entries.forEach(async (entry) => {
+      if (entry.isIntersecting) {
+        if (entry.target.className === "section-heading") {
+          if (hobbiesHeadingVisited) return;
+          hobbiesHeadingVisited = true;
+          headingTyper("HOBBIES", allRefs.hobbiesHeading);
+        } else {
+        }
+      }
+    });
+  };
+  const homeObserver = new IntersectionObserver(homeObserverCallback, options);
+  const skillsObserver = new IntersectionObserver(
+    skillsObserverCallback,
+    options
+  );
+  const hobbiesObserver = new IntersectionObserver(
+    hobbiesObserverCallback,
+    options
+  );
+  const addHomeObserver = (element) => {
+    homeObserver.observe(element);
+  };
+
+  const addSkillsObserver = (element) => {
+    skillsObserver.observe(element);
+  };
+
+  const addHobbiesObserver = (element) => {
+    hobbiesObserver.observe(element);
+  };
+  return {
+    addHomeObserver,
+    addSkillsObserver,
+    addHobbiesObserver,
+  };
+})();
+
+const observeAllSections = () => {
   const skillList = [
     { name: "HTML5", mastery: 85 },
     {
@@ -112,107 +207,42 @@ const pageBuilder = (() => {
       mastery: 76,
     },
   ];
-  const waitForMs = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-  const options = {
-    rootMargin: "0px",
-    threshold: 1.0,
-  };
-
-  let skillHeadingVisited = false;
-  let skillsInfoVisited = false;
-  let hobbiesVisited = false;
-
-  const homeObserverCallback = (entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.remove("hidden");
-        entry.target.classList.add("active");
-      }
-    });
-  };
-
-  const skillsObserverCallback = (entries, observer) => {
-    entries.forEach(async (entry) => {
-      if (entry.isIntersecting) {
-        if (entry.target.className === "section-heading") {
-          if (skillHeadingVisited) return;
-          skillHeadingVisited = true;
-          const name = "SKILLS";
-          let length = 0;
-          while (length < name.length) {
-            const newSpan = document.createElement("span");
-            newSpan.classList.add("section-heading-letter");
-            newSpan.classList.add("init");
-
-            // this listener removes the init class
-            newSpan.addEventListener("animationend", (event) => {
-              newSpan.classList.remove("init");
-            });
-            newSpan.textContent = name[length++];
-            allRefs.skillsHeading.appendChild(newSpan);
-
-            await waitForMs(250);
-          }
-        } else {
-          if (skillsInfoVisited) return;
-
-          skillsInfoVisited = true;
-          skillList.forEach((skill) => {
-            const skillDiv = document.createElement("div");
-            const skillName = document.createElement("div");
-            const skillBar = document.createElement("div");
-            // acts as progress bar
-            skillDiv.classList.add("skill-div");
-
-            skillName.classList.add("skill-name");
-            skillName.textContent = skill.name;
-
-            skillBar.classList.add("skill-bar");
-            skillBar.style.width = `${skill.mastery}%`;
-
-            skillDiv.appendChild(skillName);
-            skillDiv.appendChild(skillBar);
-
-            allRefs.skillsInfo.appendChild(skillDiv);
-          });
-        }
-      }
-    });
-  };
-
-  const homeObserver = new IntersectionObserver(homeObserverCallback, options);
-  const skillsObserver = new IntersectionObserver(
-    skillsObserverCallback,
-    options
-  );
-
-  const addHomeObserver = (element) => {
-    homeObserver.observe(element);
-  };
-
-  const addSkillsObserver = (element) => {
-    skillsObserver.observe(element);
-  };
-
-  return {
-    addHomeObserver,
-    addSkillsObserver,
-    // addHobbiesObserver,
-  };
-})();
-
-const observeAllSections = () => {
   allRefs.sections.forEach((section) => {
     if (section.id === "home") {
       for (let element of section.children) {
         pageBuilder.addHomeObserver(element);
       }
     } else if (section.id === "skills") {
+      skillList.forEach((skill) => {
+        const skillDiv = document.createElement("div");
+        const skillName = document.createElement("div");
+        const skillBar = document.createElement("div");
+        // acts as progress bar
+        skillDiv.classList.add("skill-div");
+
+        skillName.classList.add("skill-name");
+        skillName.textContent = skill.name;
+
+        skillBar.classList.add("skill-bar");
+        skillBar.style.width = `${skill.mastery}%`;
+
+        skillDiv.appendChild(skillName);
+        skillDiv.appendChild(skillBar);
+
+        pageBuilder.addSkillsObserver(skillDiv);
+
+        skillDiv.addEventListener("animationend", (event) => {
+          skillBar.classList.add("show");
+        });
+        allRefs.skillsInfo.appendChild(skillDiv);
+      });
+
+      pageBuilder.addSkillsObserver(section.children[0]);
+    } else {
       for (let element of section.children) {
-        pageBuilder.addSkillsObserver(element);
+        pageBuilder.addHobbiesObserver(element);
       }
     }
-
     navBarLogic.highlightOnScrollLogic(section);
   });
 };

@@ -20,13 +20,17 @@ ol {
 }
 
 /* SECTION COMMON  */
+section {
+  padding-bottom: 50px;
+}
+
 .section-heading {
   font-family: var(--montserrat);
   font-weight: 700;
   font-size: 130px;
 
   color: #6320ee;
-  width: 463px;
+  width: 100%;
   height: 196px;
   align-self: flex-start;
 }
@@ -38,7 +42,7 @@ ol {
 
 .section-heading-letter.init {
   transform: scaleY(0);
-  animation: pop-in 0.4s ease-in-out forwards;
+  animation: pop-in 0.35s ease-in-out forwards;
 }
 
 .section-heading-letter {
@@ -92,6 +96,9 @@ header {
   transition: 0.2s ease-in-out;
 }
 
+.navigation-option:hover {
+  color: #6320ee;
+}
 .navigation-option.current {
   color: #6320ee;
 }
@@ -123,7 +130,7 @@ header.sticky::after {
   transform: scaleX(0);
   background-color: #6320ee;
 
-  animation: expand-x-center 0.5s ease-in-out forwards;
+  animation: expand-x-center 0.8s ease-in-out forwards;
 }
 
 header.sticky + #home {
@@ -242,37 +249,20 @@ header.sticky + #home {
   font-size: 25px;
   font-weight: 600;
 
+  transform-origin: center;
+  transform: scaleX(0);
+
   overflow: hidden;
   z-index: 2;
+}
+
+.skill-div.show {
+  animation: expand-x-center 0.5s ease-in-out forwards;
 }
 
 .skill-name {
   position: absolute;
   bottom: 15px;
-
-  z-index: 1;
-}
-
-.skill-name::after {
-  content: "";
-  position: absolute;
-
-  width: 100%;
-  height: 3px;
-  top: 100%;
-  left: 0;
-
-  transform-origin: center;
-  transform: scaleX(0);
-  transition: 0.42s ease-in-out;
-
-  background-color: #fdfffc;
-  z-index: 1;
-}
-
-.skill-name:hover .skill-name::after {
-  transform: scaleX(1);
-  transform-origin: center;
 
   z-index: 1;
 }
@@ -291,8 +281,23 @@ header.sticky + #home {
   transform: scaleX(0);
   transform-origin: left;
 
-  animation: expand-x-left 1s ease-in-out forwards;
   z-index: 0 !important;
+}
+
+.skill-bar.show {
+  animation: expand-x-left 1s ease-in-out forwards;
+}
+
+/* HOBBIES  */
+#hobbies {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 50px;
+  width: 80%;
+
+  padding-top: 100px;
 }
 
 /* BODY  */
