@@ -73,6 +73,10 @@ const navBarLogic = (() => {
     }
   };
 
+  // for name to navigate back to home
+  allRefs.navBarName.addEventListener("click", () => window.scrollTo(0, 0));
+
+  // for each of the navbar options
   options.forEach((option) =>
     option.addEventListener("click", () => {
       if (current === option.classList[1]) {
@@ -148,7 +152,7 @@ const pageBuilder = (() => {
             newSpan.textContent = name[length++];
             allRefs.skillsHeading.appendChild(newSpan);
 
-            await waitForMs(200);
+            await waitForMs(225);
           }
         }
       }

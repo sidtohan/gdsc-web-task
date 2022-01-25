@@ -37,12 +37,12 @@ ol {
 
 .section-heading-letter {
   transform: scaleY(1);
-  transition: 0.3s ease-in-out;
+  transition: 0.15s ease-in-out;
 }
 
 .section-heading-letter:hover {
-  transform: scaleY(1.05);
-  transform-origin: bottom center;
+  transform: scaleY(1.06);
+  transform-origin: center;
 }
 
 /* NAV  */
@@ -65,6 +65,9 @@ header {
   font-size: 35px;
 
   color: #6320ee;
+  cursor: pointer;
+
+  transition: 0.42s ease-in-out;
 }
 
 .navigation-options {
@@ -182,6 +185,7 @@ header.sticky + #home {
   border-radius: 50%;
   border: 7px solid #6320ee;
 
+  background-color: #fdfffc;
   background-image: url("./assets/profile-pic.png");
   background-size: cover;
   background-position: center;
@@ -245,15 +249,15 @@ html {
 @keyframes pop-in {
   0% {
     transform: scaleY(0);
-    transform-origin: bottom;
+    transform-origin: center;
   }
   50% {
     transform: scaleY(1.15);
-    transform-origin: bottom;
+    transform-origin: center;
   }
   100% {
     transform: scaleY(1);
-    transform-origin: bottom;
+    transform-origin: center;
   }
 }
 
