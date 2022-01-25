@@ -130,7 +130,7 @@ header.sticky::after {
   transform: scaleX(0);
   background-color: #6320ee;
 
-  animation: expand-x-center 0.8s ease-in-out forwards;
+  animation: expand-x-center 0.5s ease-in-out forwards;
 }
 
 header.sticky + #home {
@@ -249,7 +249,7 @@ header.sticky + #home {
   font-size: 25px;
   font-weight: 600;
 
-  transform-origin: center;
+  transform-origin: left;
   transform: scaleX(0);
 
   overflow: hidden;
@@ -257,12 +257,36 @@ header.sticky + #home {
 }
 
 .skill-div.show {
-  animation: expand-x-center 0.5s ease-in-out forwards;
+  animation: expand-x-left 0.5s ease-in-out forwards;
 }
 
 .skill-name {
   position: absolute;
   bottom: 15px;
+
+  z-index: 1;
+}
+
+.skill-name::after {
+  content: "";
+  position: absolute;
+
+  width: 100%;
+  height: 3px;
+  top: 100%;
+  left: 0;
+
+  transform-origin: center;
+  transform: scaleX(0);
+  transition: 0.42s ease-in-out;
+
+  background-color: #fdfffc;
+  z-index: 1;
+}
+
+.skill-name:hover .skill-name::after {
+  transform: scaleX(1);
+  transform-origin: center;
 
   z-index: 1;
 }

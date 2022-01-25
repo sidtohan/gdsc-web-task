@@ -207,6 +207,26 @@ const observeAllSections = () => {
       mastery: 76,
     },
   ];
+
+  const hobbiesList = [
+    {
+      name: "Coding",
+      icon: "./assets/coding.svg",
+    },
+    {
+      name: "Music",
+      icon: "./assets/music.svg",
+    },
+    {
+      name: "Gaming",
+      icon: "./assets/gaming.svg",
+    },
+    {
+      name: "Anime",
+      icon: "./assets/anime.svg",
+    },
+  ];
+
   allRefs.sections.forEach((section) => {
     if (section.id === "home") {
       for (let element of section.children) {
@@ -215,8 +235,9 @@ const observeAllSections = () => {
     } else if (section.id === "skills") {
       skillList.forEach((skill) => {
         const skillDiv = document.createElement("div");
-        const skillName = document.createElement("div");
+        const skillName = document.createElement("p");
         const skillBar = document.createElement("div");
+
         // acts as progress bar
         skillDiv.classList.add("skill-div");
 
@@ -239,9 +260,11 @@ const observeAllSections = () => {
 
       pageBuilder.addSkillsObserver(section.children[0]);
     } else {
-      for (let element of section.children) {
-        pageBuilder.addHobbiesObserver(element);
-      }
+      hobbiesList.forEach((hobby) => {
+        const hobbyDiv = document.createElement("div");
+        const hobbyName = document.createElement("p");
+      });
+      pageBuilder.addHobbiesObserver(section.children[0]);
     }
     navBarLogic.highlightOnScrollLogic(section);
   });
