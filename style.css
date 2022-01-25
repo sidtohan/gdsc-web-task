@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Montserrat+Alternates:wght@400;500;600&family=Readex+Pro:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Montserrat+Alternates:wght@400;500;600&family=Readex+Pro:wght@400;500;600;700;800&display=swap");
 
 /* BASIC RESET CSS  */
 * {
@@ -15,18 +15,18 @@ ol {
 
 :root {
   --montserratal: "Montserrat Alternates", Verdana, Geneva, Tahoma, sans-serif;
-  --poppins: "Poppins", Verdana, Geneva, Tahoma, sans-serif;
+  --montserrat: "Montserrat", Verdana, Geneva, Tahoma, sans-serif;
   --readexpro: "Readex Pro", Verdana, Geneva, Tahoma, sans-serif;
 }
 
 /* SECTION COMMON  */
 .section-heading {
-  font-family: var(--poppins);
+  font-family: var(--montserrat);
   font-weight: 700;
   font-size: 130px;
 
   color: #6320ee;
-  width: 413px;
+  width: 463px;
   height: 196px;
   align-self: flex-start;
 }
@@ -56,7 +56,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 120px;
+  gap: 150px;
 
   padding: 20px;
   z-index: 3;
@@ -340,15 +340,15 @@ html {
 @keyframes pop-in {
   0% {
     transform: scaleY(0);
-    transform-origin: center;
+    transform-origin: bottom;
   }
   50% {
     transform: scaleY(1.15);
-    transform-origin: center;
+    transform-origin: bottom;
   }
   100% {
     transform: scaleY(1);
-    transform-origin: center;
+    transform-origin: bottom;
   }
 }
 

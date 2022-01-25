@@ -151,7 +151,7 @@ const pageBuilder = (() => {
             newSpan.textContent = name[length++];
             allRefs.skillsHeading.appendChild(newSpan);
 
-            await waitForMs(225);
+            await waitForMs(250);
           }
         } else {
           if (skillsInfoVisited) return;
