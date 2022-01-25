@@ -13,9 +13,15 @@ ol {
   list-style: none;
 }
 
+:root {
+  --montserratal: "Montserrat Alternates", Verdana, Geneva, Tahoma, sans-serif;
+  --poppins: "Poppins", Verdana, Geneva, Tahoma, sans-serif;
+  --readexpro: "Readex Pro", Verdana, Geneva, Tahoma, sans-serif;
+}
+
 /* SECTION COMMON  */
 .section-heading {
-  font-family: "Poppins", Verdana, Geneva, Tahoma, sans-serif;
+  font-family: var(--poppins);
   font-weight: 700;
   font-size: 130px;
 
@@ -41,8 +47,8 @@ ol {
 }
 
 .section-heading-letter:hover {
-  transform: scaleY(1.06);
-  transform-origin: center;
+  transform: scaleY(1.04);
+  transform-origin: bottom center;
 }
 
 /* NAV  */
@@ -53,14 +59,14 @@ header {
   gap: 120px;
 
   padding: 20px;
-  z-index: 1;
+  z-index: 3;
 
   width: 100%;
   transition: 0.2s ease-in-out;
 }
 
 .navigation-name {
-  font-family: "Readex Pro", Verdana, Geneva, Tahoma, sans-serif;
+  font-family: var(--readexpro);
   font-weight: 500;
   font-size: 35px;
 
@@ -73,7 +79,7 @@ header {
 .navigation-options {
   display: flex;
   align-items: flex-end;
-  font-family: "Montserrat Alternates", Verdana, Geneva, Tahoma, sans-serif;
+  font-family: var(--montserratal);
   font-weight: 600;
   color: #232020;
 
@@ -117,7 +123,7 @@ header.sticky::after {
   transform: scaleX(0);
   background-color: #6320ee;
 
-  animation: expand-x 0.5s ease-in-out forwards;
+  animation: expand-x-center 0.5s ease-in-out forwards;
 }
 
 header.sticky + #home {
@@ -126,7 +132,6 @@ header.sticky + #home {
 
 /* HOME  */
 #home {
-  padding-top: 100px;
   width: 80%;
   display: grid;
 
@@ -134,10 +139,11 @@ header.sticky + #home {
   grid-template-rows: repeat(3, 1fr);
 
   grid-row-gap: 50px;
+  padding-top: 100px;
 }
 
 .home-heading {
-  font-family: "Readex Pro", Verdana, Geneva, Tahoma, sans-serif;
+  font-family: var(--readexpro);
   font-style: normal;
   font-weight: 500;
   font-size: 70px;
@@ -158,8 +164,9 @@ header.sticky + #home {
 .home-heading.active {
   animation: show-from-top 0.5s ease-in-out forwards;
 }
+
 .home-info {
-  font-family: "Montserrat Alternates", Verdana, Geneva, Tahoma, sans-serif;
+  font-family: var(--montserratal);
   font-style: normal;
   font-weight: 400;
   font-size: 30px;
@@ -203,12 +210,89 @@ header.sticky + #home {
 
 /* SKILLS  */
 #skills {
-  padding-top: 120px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  gap: 50px;
   width: 80%;
+
+  padding-top: 100px;
+}
+
+.skills-info {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  gap: 30px;
+}
+
+.skill-div {
+  padding: 30px;
+  font-family: var(--montserratal);
+  color: #fdfffc;
+
+  position: relative;
+  background-color: #c4c4c4;
+  border-radius: 50px;
+
+  width: 800px;
+  height: 60px;
+  font-size: 25px;
+  font-weight: 600;
+
+  overflow: hidden;
+  z-index: 2;
+}
+
+.skill-name {
+  position: absolute;
+  bottom: 15px;
+
+  z-index: 1;
+}
+
+.skill-name::after {
+  content: "";
+  position: absolute;
+
+  width: 100%;
+  height: 3px;
+  top: 100%;
+  left: 0;
+
+  transform-origin: center;
+  transform: scaleX(0);
+  transition: 0.42s ease-in-out;
+
+  background-color: #fdfffc;
+  z-index: 1;
+}
+
+.skill-name:hover .skill-name::after {
+  transform: scaleX(1);
+  transform-origin: center;
+
+  z-index: 1;
+}
+
+.skill-bar {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+  background-color: #6320ee;
+
+  height: 100%;
+  padding-left: 50px;
+
+  border-radius: inherit;
+  transform: scaleX(0);
+  transform-origin: left;
+
+  animation: expand-x-left 1s ease-in-out forwards;
+  z-index: 0 !important;
 }
 
 /* BODY  */
@@ -240,10 +324,17 @@ html {
 }
 
 /* ANIMATIONS  */
-@keyframes expand-x {
+@keyframes expand-x-center {
   to {
     transform: scaleX(1);
     transform-origin: center;
+  }
+}
+
+@keyframes expand-x-left {
+  to {
+    transform: scaleX(1);
+    transform-origin: left;
   }
 }
 @keyframes pop-in {

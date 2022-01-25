@@ -1,43 +1,6 @@
-// const backgroundParticles = (() => {
-//   const body = document.body;
-//   const getDiv = (index) => {
-//     let newDiv = document.createElement("div");
-//     newDiv.classList.add("bg-div");
-
-//     const height = Math.min(
-//       75,
-//       Math.max(50, Math.ceil(Math.random() * 10 + 1) * 8)
-//     );
-//     const width = height;
-//     const color = colorPallete[Math.floor(Math.random() * 3)];
-
-//     const leftFactor = Math.max(10, Math.ceil(Math.random() * 90));
-//     newDiv.setAttribute(
-//       "style",
-//       `
-//     height: ${height}px;
-//     width: ${width}px;
-//     background-color: ${color};
-//     bottom: -${width}px;
-//     left: ${Math.ceil(Math.random() * 100)}%;
-//     animation: float-up ${Math.min(
-//       30,
-//       Math.max(20, Math.floor(Math.random() * 100))
-//     )}s linear infinite;
-//     opacity: ${Math.min(0.8, Math.max(0.5, Math.random()))};
-//     animation-delay: ${index > 25 ? index - 25 : index}s;
-//   `
-//     );
-//     return newDiv;
-//   };
-//   const colorPallete = ["#4ECDC4", "#FF6B6B", "#FFE66D"];
-//   for (let i = 0; i < 30; i++) {
-//     body.appendChild(getDiv(i));
-//   }
-// })();
-
 // stores all the refs
 const allRefs = (() => {
+  const sections = document.querySelectorAll("section");
   const navBar = document.querySelector("header");
   const navBarName = navBar.querySelector(".navigation-name");
   const navBurger = navBar.querySelector(".burger-button");
@@ -57,6 +20,7 @@ const allRefs = (() => {
     skills,
     skillsHeading,
     skillsInfo,
+    sections,
   };
 })();
 
@@ -66,7 +30,7 @@ const navBarLogic = (() => {
   let currentOptionDiv = options[0];
 
   const editNav = () => {
-    if (window.scrollY > 3 * allRefs.navBar.offsetHeight) {
+    if (window.scrollY > 1.5 * allRefs.navBar.offsetHeight) {
       allRefs.navBar.classList.add("sticky");
     } else {
       allRefs.navBar.classList.remove("sticky");
@@ -80,7 +44,8 @@ const navBarLogic = (() => {
   options.forEach((option) =>
     option.addEventListener("click", () => {
       if (current === option.classList[1]) {
-        return;
+        const section = document.getElementById(`${current}`);
+        section.scrollIntoView();
       }
       current = option.classList[1];
       currentOptionDiv.classList.remove("current");
@@ -93,25 +58,58 @@ const navBarLogic = (() => {
       }
       // if home, then we go to the top of the document
 
-      const section = document.querySelector(`#${current}`);
-      section.scrollIntoView({
-        behavior: "smooth",
-      });
+      const section = document.getElementById(`${current}`);
+      section.scrollIntoView();
     })
   );
-  return { editNav };
+
+  // section highlight logic when scrolling
+  const sectionObserverCallback = (entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        current = entry.target.id;
+        currentOptionDiv.classList.remove("current");
+
+        currentOptionDiv = allRefs.navBar.querySelector(`.${current}`);
+        currentOptionDiv.classList.add("current");
+      }
+    });
+  };
+  const sectionObserver = new IntersectionObserver(sectionObserverCallback, {
+    rootMargin: "0px",
+    threshold: 0.6,
+  });
+
+  const highlightOnScrollLogic = (section) => sectionObserver.observe(section);
+  return { editNav, highlightOnScrollLogic };
 })();
 
 const pageBuilder = (() => {
   const skillList = [
-    { name: "HTML5", mastery: 95 },
+    { name: "HTML5", mastery: 85 },
     {
       name: "CSS3",
-      mastery: 95,
+      mastery: 93,
     },
     {
       name: "Javascript",
-      mastery: 100,
+      mastery: 98,
+    },
+    {
+      name: "React",
+      mastery: 80,
+    },
+    {
+      name: "Node.js",
+      mastery: 85,
+    },
+    {
+      name: "Express",
+      mastery: 70,
+    },
+    {
+      name: "MongoDB",
+      mastery: 76,
     },
   ];
   const waitForMs = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -120,7 +118,8 @@ const pageBuilder = (() => {
     threshold: 1.0,
   };
 
-  let skillVisited = false;
+  let skillHeadingVisited = false;
+  let skillsInfoVisited = false;
   let hobbiesVisited = false;
 
   const homeObserverCallback = (entries, observer) => {
@@ -136,8 +135,8 @@ const pageBuilder = (() => {
     entries.forEach(async (entry) => {
       if (entry.isIntersecting) {
         if (entry.target.className === "section-heading") {
-          if (skillVisited) return;
-          skillVisited = true;
+          if (skillHeadingVisited) return;
+          skillHeadingVisited = true;
           const name = "SKILLS";
           let length = 0;
           while (length < name.length) {
@@ -154,6 +153,28 @@ const pageBuilder = (() => {
 
             await waitForMs(225);
           }
+        } else {
+          if (skillsInfoVisited) return;
+
+          skillsInfoVisited = true;
+          skillList.forEach((skill) => {
+            const skillDiv = document.createElement("div");
+            const skillName = document.createElement("div");
+            const skillBar = document.createElement("div");
+            // acts as progress bar
+            skillDiv.classList.add("skill-div");
+
+            skillName.classList.add("skill-name");
+            skillName.textContent = skill.name;
+
+            skillBar.classList.add("skill-bar");
+            skillBar.style.width = `${skill.mastery}%`;
+
+            skillDiv.appendChild(skillName);
+            skillDiv.appendChild(skillBar);
+
+            allRefs.skillsInfo.appendChild(skillDiv);
+          });
         }
       }
     });
@@ -181,8 +202,7 @@ const pageBuilder = (() => {
 })();
 
 const observeAllSections = () => {
-  const allSections = document.querySelectorAll("section");
-  allSections.forEach((section) => {
+  allRefs.sections.forEach((section) => {
     if (section.id === "home") {
       for (let element of section.children) {
         pageBuilder.addHomeObserver(element);
@@ -192,6 +212,8 @@ const observeAllSections = () => {
         pageBuilder.addSkillsObserver(element);
       }
     }
+
+    navBarLogic.highlightOnScrollLogic(section);
   });
 };
 
