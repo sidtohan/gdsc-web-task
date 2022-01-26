@@ -204,7 +204,7 @@ header.sticky + #home {
   background-size: cover;
   background-position: center;
 
-  align-self: end;
+  align-self: center;
 }
 
 .profile-pic.hidden {
@@ -322,8 +322,75 @@ header.sticky + #home {
   width: 80%;
 
   padding-top: 100px;
+
+  font-family: var(--montserratal);
+  font-size: 25px;
+  color: #6320ee;
+  font-weight: 600;
 }
 
+.hobbies-info {
+  display: flex;
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  gap: 20px;
+  width: 80%;
+}
+
+.hobby-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  height: 250px;
+  width: 200px;
+  box-shadow: 0 0 10px 0 #c4c4c4;
+
+  opacity: 0;
+  transform: translateY(-50px);
+
+  border-radius: 20px;
+  gap: 25px;
+}
+
+.hobby-card.show {
+  animation: show-from-top 0.5s ease-in-out forwards;
+}
+.hobby-image {
+  display: block;
+  width: 50%;
+  height: auto;
+}
+
+.hobby-name {
+  transition: 0.3s ease-in-out;
+}
+
+.hobby-name.animate-color {
+  color: #fdfffc;
+}
+
+.hobby-bg-div {
+  background-color: #6320ee;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: inherit;
+  z-index: -1;
+
+  transform: scale(0);
+  transform-origin: center;
+  transition: 0.3s ease-in-out;
+}
+
+.hobby-bg-div.animate-color {
+  transform: scale(1);
+  transform-origin: center;
+}
 /* BODY  */
 ::-webkit-scrollbar {
   display: none;
@@ -342,14 +409,6 @@ html {
 
   width: 100%;
   scroll-behavior: smooth;
-}
-
-/* BACKGROUND  */
-.bg-div {
-  position: fixed;
-  border-radius: 50%;
-
-  z-index: -1;
 }
 
 /* ANIMATIONS  */
