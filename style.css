@@ -30,8 +30,7 @@ section {
   font-size: 130px;
 
   color: #6320ee;
-  width: 100%;
-  height: 196px;
+  height: 1.5em;
   align-self: flex-start;
 }
 
@@ -147,6 +146,7 @@ header.sticky + #home {
 
   grid-row-gap: 50px;
   padding-top: 100px;
+  padding-bottom: 0;
 }
 
 .home-heading {
@@ -173,21 +173,20 @@ header.sticky + #home {
 }
 
 .home-info {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
   font-family: var(--montserratal);
   font-style: normal;
   font-weight: 400;
   font-size: 30px;
 
   grid-column: 1/4;
+  grid-row: 2/4;
   text-align: right;
-}
 
-#home > p:nth-child(2) {
-  align-self: end;
-}
-
-#home > p:nth-child(3) {
-  align-self: start;
+  align-self: center;
 }
 
 .profile-pic {
@@ -232,6 +231,7 @@ header.sticky + #home {
   flex-direction: column;
 
   align-items: center;
+  width: 100%;
   gap: 30px;
 }
 
@@ -244,7 +244,7 @@ header.sticky + #home {
   background-color: #c4c4c4;
   border-radius: 50px;
 
-  width: 800px;
+  width: min(800px, 90%);
   height: 60px;
   font-size: 25px;
   font-weight: 600;
@@ -360,6 +360,20 @@ header.sticky + #home {
 .hobby-card.show {
   animation: show-from-top 0.5s ease-in-out forwards;
 }
+
+.hobby-card:hover {
+  color: #fdfffc;
+}
+
+.hobby-card:hover .hobby-image > svg {
+  fill: #fdfffc !important;
+}
+
+.hobby-card:hover .hobby-bg-div {
+  transform: scale(1);
+  transform-origin: center;
+}
+
 .hobby-image {
   display: block;
   width: 50%;
@@ -367,11 +381,7 @@ header.sticky + #home {
 }
 
 .hobby-name {
-  transition: 0.3s ease-in-out;
-}
-
-.hobby-name.animate-color {
-  color: #fdfffc;
+  transition: 0.35s ease-in-out;
 }
 
 .hobby-bg-div {
@@ -384,17 +394,14 @@ header.sticky + #home {
 
   transform: scale(0);
   transform-origin: center;
-  transition: 0.3s ease-in-out;
+  transition: 0.35s ease-in-out;
 }
 
-.hobby-bg-div.animate-color {
-  transform: scale(1);
-  transform-origin: center;
-}
 /* BODY  */
 ::-webkit-scrollbar {
   display: none;
 }
+
 body {
   background-color: #fdfffc;
   display: flex;
@@ -497,4 +504,45 @@ html {
 
 .active {
   animation: show-from-left 0.4s ease-in-out forwards;
+}
+
+/* MEDIA QUERIES  */
+@media screen and (max-width: 960px) {
+  /* HOME  */
+  #home {
+    grid-row-gap: 0;
+  }
+  .home-heading {
+    align-self: center;
+  }
+
+  .profile-pic {
+    grid-column: 1/8;
+    grid-row: 2/3;
+    justify-self: center;
+  }
+
+  .home-info {
+    grid-column: 1/8;
+    grid-row: auto;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  /* NAV  */
+  .burger-button {
+    display: block;
+  }
+  .navigation-options {
+    flex-direction: column;
+    position: fixed;
+    right: 10%;
+    bottom: 100%;
+  }
+
+  /* HOME  */
+  #home {
+    grid-row-gap: 25px;
+  }
 }

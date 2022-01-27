@@ -83,7 +83,7 @@ const navBarLogic = (() => {
   };
   const sectionObserver = new IntersectionObserver(sectionObserverCallback, {
     rootMargin: "0px",
-    threshold: 0.6,
+    threshold: 0.5,
   });
 
   const highlightOnScrollLogic = (section) => sectionObserver.observe(section);
@@ -93,12 +93,11 @@ const navBarLogic = (() => {
 const pageBuilder = (() => {
   let skillHeadingVisited = false;
   let hobbiesHeadingVisited = false;
-  let hobbiesInfoVisited = false;
 
   const waitForMs = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   const options = {
     rootMargin: "0px",
-    threshold: 1.0,
+    threshold: 0.7,
   };
 
   const headingTyper = async (name, heading) => {
@@ -268,38 +267,38 @@ const observeAllSections = () => {
       pageBuilder.addSkillsObserver(section.children[0]);
     } else {
       hobbiesList.forEach((hobby) => {
+        let path;
         const hobbyCard = document.createElement("div");
         const hobbyBgColor = document.createElement("div");
 
-        const hobbyImage = new Image();
+        const hobbyImage = document.createElement("object");
         const hobbyName = document.createElement("p");
 
+        hobbyImage.type = "image/svg+xml";
+        hobbyImage.data = hobby.icon;
         hobbyImage.classList.add("hobby-image");
+        hobbyImage.addEventListener("load", () => {
+          path = hobbyImage.contentDocument.querySelector("path");
+          path.style.transition = "0.35s ease-in-out";
+        });
+
         hobbyBgColor.className = "hobby-bg-div";
         hobbyName.textContent = hobby.name;
         hobbyCard.className = "hobby-card";
 
         hobbyName.className = "hobby-name";
-        hobbyImage.src = hobby.icon;
 
         hobbyCard.appendChild(hobbyBgColor);
         hobbyCard.appendChild(hobbyImage);
         hobbyCard.appendChild(hobbyName);
 
+        hobbyCard.addEventListener("mouseenter", () => {
+          path.style.fill = "#fdfffc";
+        });
+        hobbyCard.addEventListener("mouseleave", () => {
+          path.style.fill = "#6320ee";
+        });
         pageBuilder.addHobbiesObserver(hobbyCard);
-
-        hobbyCard.addEventListener("mouseenter", (event) => {
-          hobbyBgColor.classList.add("animate-color");
-          hobbyImage.src = hobby.iconAlt;
-          hobbyName.classList.add("animate-color");
-        });
-
-        hobbyCard.addEventListener("mouseleave", (event) => {
-          hobbyBgColor.classList.remove("animate-color");
-          hobbyImage.src = hobby.icon;
-          hobbyName.classList.remove("animate-color");
-        });
-
         allRefs.hobbiesInfo.appendChild(hobbyCard);
       });
       pageBuilder.addHobbiesObserver(section.children[0]);
