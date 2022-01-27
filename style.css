@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Montserrat+Alternates:wght@400;500;600&family=Readex+Pro:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Readex+Pro:wght@400;500;600;700;800&display=swap");
 
 /* BASIC RESET CSS  */
 * {
@@ -14,7 +14,6 @@ ol {
 }
 
 :root {
-  --montserratal: "Montserrat Alternates", Verdana, Geneva, Tahoma, sans-serif;
   --montserrat: "Montserrat", Verdana, Geneva, Tahoma, sans-serif;
   --readexpro: "Readex Pro", Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -83,7 +82,7 @@ header {
 .navigation-options {
   display: flex;
   align-items: flex-end;
-  font-family: var(--montserratal);
+  font-family: var(--montserrat);
   font-weight: 600;
   color: #232020;
 
@@ -207,7 +206,7 @@ header.sticky + #home {
   flex-direction: column;
   gap: 45px;
 
-  font-family: var(--montserratal);
+  font-family: var(--montserrat);
   font-style: normal;
   font-weight: 400;
   font-size: min(30px, 6.5vw);
@@ -265,7 +264,7 @@ header.sticky + #home {
 
 .skill-div {
   padding: 30px;
-  font-family: var(--montserratal);
+  font-family: var(--montserrat);
   color: #fdfffc;
 
   position: relative;
@@ -350,7 +349,7 @@ header.sticky + #home {
 
   padding-top: 100px;
 
-  font-family: var(--montserratal);
+  font-family: var(--montserrat);
   font-size: 25px;
   color: #6320ee;
   font-weight: 600;
