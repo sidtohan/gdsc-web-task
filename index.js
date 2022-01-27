@@ -4,7 +4,9 @@ const allRefs = (() => {
   const navBar = document.querySelector("header");
   const navBarName = navBar.querySelector(".navigation-name");
   const navBurger = navBar.querySelector(".burger-button");
+  const navBurgerLines = navBurger.querySelectorAll(".burger-line");
   const navBarOptions = navBar.querySelectorAll(".navigation-option");
+  const navBarOptionsContainer = navBar.querySelector("nav");
 
   const home = document.querySelector("#home");
 
@@ -19,7 +21,9 @@ const allRefs = (() => {
     navBar,
     navBarName,
     navBurger,
+    navBurgerLines,
     navBarOptions,
+    navBarOptionsContainer,
 
     home,
 
@@ -53,18 +57,16 @@ const navBarLogic = (() => {
   // for each of the navbar options
   options.forEach((option) =>
     option.addEventListener("click", () => {
-      if (current === option.classList[1]) {
-        const section = document.getElementById(`${current}`);
-        section.scrollIntoView();
-      }
+      allRefs.navBarOptionsContainer.classList.toggle("show");
+      allRefs.navBurgerLines.forEach((line) => line.classList.toggle("show"));
       current = option.classList[1];
-
       if (current === "home") {
         return window.scrollTo(0, 0);
       }
       // if home, then we go to the top of the document
 
       const section = document.getElementById(`${current}`);
+
       section.scrollIntoView();
     })
   );
@@ -83,9 +85,15 @@ const navBarLogic = (() => {
   };
   const sectionObserver = new IntersectionObserver(sectionObserverCallback, {
     rootMargin: "0px",
-    threshold: 0.5,
+    threshold: 0.2,
   });
 
+  const addBurgerLogic = (() => {
+    allRefs.navBurger.addEventListener("click", () => {
+      allRefs.navBurgerLines.forEach((line) => line.classList.toggle("show"));
+      allRefs.navBarOptionsContainer.classList.toggle("show");
+    });
+  })();
   const highlightOnScrollLogic = (section) => sectionObserver.observe(section);
   return { editNav, highlightOnScrollLogic };
 })();
