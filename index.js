@@ -101,7 +101,7 @@ const navBarLogic = (() => {
 const pageBuilder = (() => {
   const options = {
     rootMargin: "0px",
-    threshold: 0.7,
+    threshold: 0.3,
   };
 
   const homeObserverCallback = (entries, observer) => {
