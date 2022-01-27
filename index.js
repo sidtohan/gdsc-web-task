@@ -115,7 +115,12 @@ const pageBuilder = (() => {
   const skillsObserverCallback = (entries, observer) => {
     entries.forEach(async (entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("show");
+        if (entry.target.classList[0] === "skill-div") {
+          const skillBar = entry.target.querySelector(".skill-bar");
+          skillBar.classList.add("show");
+        } else {
+          entry.target.classList.add("show");
+        }
         skillsObserver.unobserve(entry.target);
       }
     });
@@ -230,7 +235,7 @@ const observeAllSections = () => {
         skillDiv.appendChild(skillName);
         skillDiv.appendChild(skillBar);
 
-        pageBuilder.addSkillsObserver(skillBar);
+        pageBuilder.addSkillsObserver(skillDiv);
         allRefs.skillsInfo.appendChild(skillDiv);
       });
 

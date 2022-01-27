@@ -102,14 +102,14 @@ header {
   border: none;
 
   display: none;
-  width: 50px;
+  width: 30px;
   height: 50%;
 
   transition: 0.42s ease-in-out;
 }
 
 .burger-line {
-  width: 40px;
+  width: 30px;
   background-color: #6320ee;
   height: 4px;
 
@@ -117,7 +117,7 @@ header {
 }
 
 .burger-button > div:nth-child(1).show {
-  transform: rotate(45deg) translate(10%, 10px);
+  transform: rotate(45deg) translate(12%, 10px);
 }
 
 .burger-button > div:nth-child(2).show {
@@ -126,7 +126,7 @@ header {
 }
 
 .burger-button > div:nth-child(3).show {
-  transform: rotate(-45deg) translate(10%, -10px);
+  transform: rotate(-45deg) translate(12%, -10px);
 }
 
 header.sticky {
