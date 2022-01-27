@@ -33,7 +33,6 @@ section {
   opacity: 0;
   align-self: flex-start;
 
-  opacity: 0;
   transition: 0.42s ease-in-out;
 }
 
@@ -177,10 +176,12 @@ header.sticky + #home {
   grid-row: 1/2;
 
   align-self: end;
+  opacity: 0;
+  transition: 0.42s ease-in-out;
 }
 
 .home-heading.active {
-  animation: show-from-top 0.5s ease-in-out forwards;
+  opacity: 1;
 }
 
 .home-info {
@@ -219,14 +220,14 @@ header.sticky + #home {
 
   background-color: #fdfffc;
 
-  transform: scale(0);
+  opacity: 0;
   align-self: center;
+  transition: 0.42s ease-in-out;
 }
 
 .profile-pic.active {
-  animation: pop-in-normal 0.5s ease-in-out forwards;
+  opacity: 1;
 }
-
 /* SKILLS  */
 #skills {
   display: flex;
@@ -360,10 +361,13 @@ header.sticky + #home {
 
   border-radius: 20px;
   gap: 25px;
+
+  transition: 0.42s ease-in-out;
 }
 
 .hobby-card.show {
-  animation: show-from-top 0.5s ease-in-out forwards;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .hobby-card:hover {
@@ -436,71 +440,6 @@ html {
   to {
     transform: scaleX(1);
     transform-origin: left;
-  }
-}
-@keyframes pop-in {
-  0% {
-    transform: scaleY(0);
-    transform-origin: bottom;
-  }
-  50% {
-    transform: scaleY(1.15);
-    transform-origin: bottom;
-  }
-  100% {
-    transform: scaleY(1);
-    transform-origin: bottom;
-  }
-}
-
-@keyframes show-from-top {
-  0% {
-    transform: translateY(-50px);
-    opacity: 0;
-  }
-  50% {
-    transform: translateY(0) scaleY(0.9);
-    transform-origin: bottom;
-    opacity: 1;
-  }
-
-  100% {
-    transform: translateY(0) scaleY(1);
-    transform-origin: bottom;
-    opacity: 1;
-  }
-}
-@keyframes show-from-left {
-  0% {
-    transform: translateX(-50px);
-    opacity: 0;
-  }
-  50% {
-    transform: translateX(0) scaleX(0.9);
-    transform-origin: right;
-    opacity: 1;
-  }
-
-  100% {
-    transform: translateX(0) scaleX(1);
-    transform-origin: right;
-    opacity: 1;
-  }
-}
-
-@keyframes pop-in-normal {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1.1);
-    transform-origin: center;
-  }
-  100% {
-    transform: scale(1);
-    transform-origin: center;
-
-    box-shadow: #6320ee 0 0 10px 0;
   }
 }
 

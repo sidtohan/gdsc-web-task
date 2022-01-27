@@ -99,10 +99,6 @@ const navBarLogic = (() => {
 })();
 
 const pageBuilder = (() => {
-  let skillHeadingVisited = false;
-  let hobbiesHeadingVisited = false;
-
-  const waitForMs = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   const options = {
     rootMargin: "0px",
     threshold: 0.7,
@@ -119,13 +115,8 @@ const pageBuilder = (() => {
   const skillsObserverCallback = (entries, observer) => {
     entries.forEach(async (entry) => {
       if (entry.isIntersecting) {
-        if (entry.target.className === "section-heading") {
-          allRefs.skillsHeading.classList.add("show");
-          skillsObserver.unobserve(allRefs.skillsHeading);
-        } else {
-          entry.target.classList.add("show");
-          skillsObserver.unobserve(entry.target);
-        }
+        entry.target.classList.add("show");
+        skillsObserver.unobserve(entry.target);
       }
     });
   };
