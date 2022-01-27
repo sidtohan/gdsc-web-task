@@ -72,7 +72,7 @@ header {
 .navigation-name {
   font-family: var(--readexpro);
   font-weight: 500;
-  font-size: min(35px, 5.6vw);
+  font-size: min(35px, 7vw);
 
   color: #6320ee;
   cursor: pointer;
@@ -104,16 +104,18 @@ header {
 }
 
 .burger-button {
+  cursor: pointer;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 
   background: none;
   border: none;
 
   display: none;
-  width: 60px;
+  width: min(60px, 20%);
   height: 50%;
 }
 
@@ -163,7 +165,7 @@ header.sticky + #home {
   font-family: var(--readexpro);
   font-style: normal;
   font-weight: 500;
-  font-size: 70px;
+  font-size: min(70px, 14vw);
   text-align: center;
 
   color: #6320ee;
@@ -185,12 +187,12 @@ header.sticky + #home {
 .home-info {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 45px;
 
   font-family: var(--montserratal);
   font-style: normal;
   font-weight: 400;
-  font-size: 30px;
+  font-size: min(30px, 6.5vw);
 
   grid-column: 1/4;
   grid-row: 2/4;
@@ -200,18 +202,16 @@ header.sticky + #home {
 }
 
 .profile-pic {
+  display: block;
   grid-column: 5/8;
   grid-row: 2/4;
   height: 400px;
   width: 400px;
 
   border-radius: 50%;
-  border: 7px solid #6320ee;
+  border: 5px solid #6320ee;
 
   background-color: #fdfffc;
-  background-image: url("./assets/profile-pic.png");
-  background-size: cover;
-  background-position: center;
 
   align-self: center;
 }
@@ -272,8 +272,7 @@ header.sticky + #home {
 
 .skill-name {
   position: absolute;
-  bottom: 15px;
-
+  top: 25%;
   z-index: 1;
 }
 
@@ -504,7 +503,7 @@ html {
     transform: scale(1);
     transform-origin: center;
 
-    box-shadow: #6320ee 0 0 35px 0;
+    box-shadow: #6320ee 0 0 10px 0;
   }
 }
 .hidden {
@@ -520,7 +519,10 @@ html {
 @media screen and (max-width: 960px) {
   /* HOME  */
   #home {
-    grid-row-gap: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
   }
   .home-heading {
     align-self: center;
@@ -543,7 +545,7 @@ html {
   /* NAV  */
   header {
     justify-content: space-between;
-    padding: 20px 30px;
+    gap: 0;
   }
   nav {
     position: fixed;
@@ -560,6 +562,29 @@ html {
 
   /* HOME  */
   #home {
-    grid-row-gap: 25px;
+    gap: 45px;
+  }
+  .profile-pic {
+    width: 90%;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  /* SKILLS */
+  .skills-info {
+    gap: 15px;
+  }
+  .skill-div {
+    padding: 15px 20px;
+    height: 40px;
+  }
+  .skill-name {
+    font-size: 20px;
+  }
+
+  /* HOBBIES  */
+  .hobbies-info {
+    font-size: 20px;
   }
 }
