@@ -27,7 +27,7 @@ section {
 .section-heading {
   font-family: var(--montserrat);
   font-weight: 700;
-  font-size: 130px;
+  font-size: min(130px, 15vw);
 
   color: #6320ee;
   height: 1.5em;
@@ -41,7 +41,8 @@ section {
 
 .section-heading-letter.init {
   transform: scaleY(0);
-  animation: pop-in 0.35s ease-in-out forwards;
+  animation: pop-in 0.42s ease-in-out forwards;
+  animation-delay: 0.1s;
 }
 
 .section-heading-letter {
@@ -71,7 +72,7 @@ header {
 .navigation-name {
   font-family: var(--readexpro);
   font-weight: 500;
-  font-size: 35px;
+  font-size: min(35px, 5.6vw);
 
   color: #6320ee;
   cursor: pointer;
@@ -106,12 +107,20 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
 
   background: none;
   border: none;
 
   display: none;
+  width: 60px;
+  height: 50%;
+}
+
+.burger-line {
+  width: 60%;
+  background-color: #6320ee;
+  height: 4px;
 }
 
 header.sticky {
@@ -122,8 +131,9 @@ header.sticky {
 header.sticky::after {
   position: absolute;
   top: 100%;
+  left: 0;
   content: "";
-  width: 100%;
+  width: 100vw;
   height: 3px;
 
   transform: scaleX(0);
@@ -531,14 +541,21 @@ html {
 
 @media screen and (max-width: 800px) {
   /* NAV  */
-  .burger-button {
-    display: block;
+  header {
+    justify-content: space-between;
+    padding: 20px 30px;
   }
-  .navigation-options {
-    flex-direction: column;
+  nav {
     position: fixed;
     right: 10%;
     bottom: 100%;
+  }
+  .burger-button {
+    display: flex;
+    flex-direction: column;
+  }
+  .navigation-options {
+    flex-direction: column;
   }
 
   /* HOME  */
