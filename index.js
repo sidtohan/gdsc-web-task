@@ -108,28 +108,9 @@ const pageBuilder = (() => {
     threshold: 0.7,
   };
 
-  const headingTyper = async (name, heading) => {
-    let length = 0;
-    while (length < name.length) {
-      const newSpan = document.createElement("span");
-      newSpan.classList.add("section-heading-letter");
-      newSpan.classList.add("init");
-
-      // this listener removes the init class
-      newSpan.addEventListener("animationend", (event) => {
-        newSpan.classList.remove("init");
-      });
-      newSpan.textContent = name[length++];
-      heading.appendChild(newSpan);
-
-      await waitForMs(50);
-    }
-  };
-
   const homeObserverCallback = (entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.remove("hidden");
         entry.target.classList.add("active");
       }
     });
@@ -139,11 +120,11 @@ const pageBuilder = (() => {
     entries.forEach(async (entry) => {
       if (entry.isIntersecting) {
         if (entry.target.className === "section-heading") {
-          if (skillHeadingVisited) return;
-          skillHeadingVisited = true;
-          headingTyper("SKILLS", allRefs.skillsHeading);
+          allRefs.skillsHeading.classList.add("show");
+          skillsObserver.unobserve(allRefs.skillsHeading);
         } else {
           entry.target.classList.add("show");
+          skillsObserver.unobserve(entry.target);
         }
       }
     });
@@ -152,13 +133,7 @@ const pageBuilder = (() => {
   const hobbiesObserverCallback = (entries, observer) => {
     entries.forEach(async (entry) => {
       if (entry.isIntersecting) {
-        if (entry.target.className === "section-heading") {
-          if (hobbiesHeadingVisited) return;
-          hobbiesHeadingVisited = true;
-          headingTyper("HOBBIES", allRefs.hobbiesHeading);
-        } else {
-          entry.target.classList.add("show");
-        }
+        entry.target.classList.add("show");
       }
     });
   };
@@ -264,11 +239,7 @@ const observeAllSections = () => {
         skillDiv.appendChild(skillName);
         skillDiv.appendChild(skillBar);
 
-        pageBuilder.addSkillsObserver(skillDiv);
-
-        skillDiv.addEventListener("animationend", (event) => {
-          skillBar.classList.add("show");
-        });
+        pageBuilder.addSkillsObserver(skillBar);
         allRefs.skillsInfo.appendChild(skillDiv);
       });
 
