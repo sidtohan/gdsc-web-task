@@ -284,3 +284,8 @@ const observeAllSections = () => {
 
 observeAllSections();
 window.addEventListener("scroll", navBarLogic.editNav);
+
+const loadingScreen = document.getElementById("loading");
+window.addEventListener("load", () => {
+  loadingScreen.classList.remove("loading");
+});

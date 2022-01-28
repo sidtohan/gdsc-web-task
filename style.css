@@ -18,6 +18,32 @@ ol {
   --readexpro: "Readex Pro", Verdana, Geneva, Tahoma, sans-serif;
 }
 
+/* LOADING  */
+#loading {
+  position: fixed;
+  display: none;
+
+  min-height: 100%;
+  width: 100%;
+
+  background-color: #fdfffc;
+}
+
+#loading.loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+
+.loader {
+  width: 60px;
+  height: 60px;
+  background-color: #6320ee;
+  animation: spin 0.8s ease-in-out infinite;
+}
+
 /* SECTION COMMON  */
 section {
   padding-bottom: 50px;
@@ -418,6 +444,23 @@ html {
   }
 }
 
+@keyframes spin {
+  0% {
+    transform: rotate(-180deg);
+  }
+  50% {
+    transform: translateY(-30px);
+  }
+  70% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 /* MEDIA QUERIES  */
 @media screen and (max-width: 960px) {
   /* HOME  */
