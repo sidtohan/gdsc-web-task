@@ -75,7 +75,6 @@ const navBarLogic = (() => {
   const sectionObserverCallback = (entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        console.log(entry);
         current = entry.target.id;
         currentOptionDiv.classList.remove("current");
 
