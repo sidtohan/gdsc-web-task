@@ -17,6 +17,10 @@ const allRefs = (() => {
   const hobbies = document.querySelector("#hobbies");
   const hobbiesHeading = hobbies.querySelector(".section-heading");
   const hobbiesInfo = hobbies.querySelector(".hobbies-info");
+
+  const contacts = document.querySelector("#contacts");
+  const contactsHeading = contacts.querySelector(".section-heading");
+  const contactsInfo = contacts.querySelector(".contacts-info");
   return {
     navBar,
     navBarName,
@@ -35,6 +39,10 @@ const allRefs = (() => {
     hobbies,
     hobbiesHeading,
     hobbiesInfo,
+
+    contacts,
+    contactsHeading,
+    contactsInfo,
   };
 })();
 
@@ -85,7 +93,7 @@ const navBarLogic = (() => {
   };
   const sectionObserver = new IntersectionObserver(sectionObserverCallback, {
     rootMargin: "0px",
-    threshold: 0.3,
+    threshold: 0.4,
   });
 
   const addBurgerLogic = (() => {
@@ -127,7 +135,15 @@ const pageBuilder = (() => {
   };
 
   const hobbiesObserverCallback = (entries, observer) => {
-    entries.forEach(async (entry) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      }
+    });
+  };
+
+  const contactsObserverCallback = (entries, observer) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("show");
       }
@@ -142,6 +158,10 @@ const pageBuilder = (() => {
     hobbiesObserverCallback,
     options
   );
+  const contactsObserver = new IntersectionObserver(
+    contactsObserverCallback,
+    options
+  );
   const addHomeObserver = (element) => {
     homeObserver.observe(element);
   };
@@ -153,14 +173,19 @@ const pageBuilder = (() => {
   const addHobbiesObserver = (element) => {
     hobbiesObserver.observe(element);
   };
+
+  const addContactsObserver = (element) => {
+    contactsObserver.observe(element);
+  };
   return {
     addHomeObserver,
     addSkillsObserver,
     addHobbiesObserver,
+    addContactsObserver,
   };
 })();
 
-const observeAllSections = () => {
+const processAllSections = () => {
   const skillList = [
     { name: "HTML5", mastery: 85 },
     {
@@ -212,6 +237,23 @@ const observeAllSections = () => {
     },
   ];
 
+  const contacts = [
+    {
+      name: "Github",
+      link: "https://github.com/sidtohan",
+      icon: "./assets/github.svg",
+    },
+    {
+      name: "Linkedin",
+      link: "https://linkedin.com/in/siddhant-tohan",
+      icon: "./assets/linkedin.svg",
+    },
+    {
+      name: "Codechef",
+      link: "https://www.codechef.com/users/siddhant_tohan",
+      icon: "./assets/linkedin.svg",
+    },
+  ];
   allRefs.sections.forEach((section) => {
     if (section.id === "home") {
       for (let element of section.children) {
@@ -238,9 +280,8 @@ const observeAllSections = () => {
         pageBuilder.addSkillsObserver(skillDiv);
         allRefs.skillsInfo.appendChild(skillDiv);
       });
-
       pageBuilder.addSkillsObserver(section.children[0]);
-    } else {
+    } else if (section.id === "hobbies") {
       hobbiesList.forEach((hobby) => {
         let path;
         const hobbyCard = document.createElement("div");
@@ -277,10 +318,29 @@ const observeAllSections = () => {
         allRefs.hobbiesInfo.appendChild(hobbyCard);
       });
       pageBuilder.addHobbiesObserver(section.children[0]);
+    } else {
+      contacts.forEach((contact) => {
+        const contactDiv = document.createElement("div");
+        contactDiv.className = "contact-div";
+
+        const contactName = document.createElement("div");
+        contactName.className = "contact-name";
+        contactName.textContent = contact.name;
+
+        const contactImage = document.createElement("object");
+        contactImage.type = "image/svg+xml";
+
+        contactImage.data = contact.icon;
+
+        contactDiv.appendChild(contactImage);
+        contactDiv.appendChild(contactName);
+        allRefs.contactsInfo.appendChild(contactDiv);
+      });
+      pageBuilder.addContactsObserver(section.children[0]);
     }
     navBarLogic.highlightOnScrollLogic(section);
   });
 };
 
-observeAllSections();
+processAllSections();
 window.addEventListener("scroll", navBarLogic.editNav);

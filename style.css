@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Readex+Pro:wght@400;500;600;700;800&family=Comfortaa:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Readex+Pro:wght@400;500;600;700;800&family=Comfortaa:wght@500;600&display=swap");
 
 /* BASIC RESET CSS  */
 * {
@@ -70,8 +70,8 @@ header {
 .navigation-options {
   display: flex;
   align-items: flex-end;
-  font-family: var(--readexpro);
-  font-weight: 400;
+  font-family: var(--montserrat);
+  font-weight: 600;
   color: #232020;
 
   gap: 30px;
@@ -385,6 +385,19 @@ header.sticky + #home {
   transform: scale(0);
   transform-origin: center;
   transition: 0.3s ease-in-out;
+}
+
+/* FOOTER  */
+footer {
+  width: 100%;
+}
+#contacts {
+  padding-top: 100px;
+  margin: 0 auto;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* BODY  */
