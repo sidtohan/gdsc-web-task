@@ -234,6 +234,7 @@ header.sticky + #home {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
   gap: 50px;
   width: 80%;
@@ -264,13 +265,14 @@ header.sticky + #home {
   font-size: 25px;
   font-weight: 600;
 
+  display: flex;
+  align-items: center;
   overflow: hidden;
   z-index: 2;
 }
 
 .skill-name {
-  position: absolute;
-  top: 25%;
+  position: relative;
   z-index: 1;
 }
 
