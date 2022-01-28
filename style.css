@@ -185,6 +185,11 @@ header.sticky + #home {
   opacity: 1;
 }
 
+.home-name {
+  font-weight: 500;
+  color: #6320ee;
+}
+
 .home-info {
   display: flex;
   flex-direction: column;
