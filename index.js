@@ -75,6 +75,7 @@ const navBarLogic = (() => {
   const sectionObserverCallback = (entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
+        console.log(entry);
         current = entry.target.id;
         currentOptionDiv.classList.remove("current");
 
@@ -85,7 +86,7 @@ const navBarLogic = (() => {
   };
   const sectionObserver = new IntersectionObserver(sectionObserverCallback, {
     rootMargin: "0px",
-    threshold: 0.2,
+    threshold: 0.3,
   });
 
   const addBurgerLogic = (() => {
