@@ -103,14 +103,14 @@ header {
   border: none;
 
   display: none;
-  width: 30px;
+  width: 35px;
   height: 50%;
 
   transition: 0.42s ease-in-out;
 }
 
 .burger-line {
-  width: 30px;
+  width: 100%;
   background-color: #6320ee;
   height: 4px;
 
@@ -118,7 +118,7 @@ header {
 }
 
 .burger-button > div:nth-child(1).show {
-  transform: rotate(45deg) translate(12%, 10px);
+  transform: rotate(45deg) translate(3.5px, 10px);
 }
 
 .burger-button > div:nth-child(2).show {
@@ -127,7 +127,7 @@ header {
 }
 
 .burger-button > div:nth-child(3).show {
-  transform: rotate(-45deg) translate(12%, -10px);
+  transform: rotate(-45deg) translate(3.5px, -10px);
 }
 
 header.sticky {
@@ -457,8 +457,21 @@ header.sticky + #home {
 /* FOOTER  */
 footer {
   width: 100%;
+  font-family: var(--readexpro);
+  padding: 40px;
+
+  text-align: center;
+  font-size: 25px;
+  font-weight: 400;
+  color: #232020;
 }
 
+.footer-name {
+  transition: 0.42s ease-in-out;
+}
+.footer-name:hover {
+  color: #6320ee;
+}
 /* BODY  */
 ::-webkit-scrollbar {
   display: none;
@@ -516,6 +529,7 @@ html {
   .profile-pic {
     grid-column: 1/8;
     grid-row: 2/3;
+    height: auto;
     justify-self: center;
   }
 
@@ -574,8 +588,8 @@ html {
     gap: 15px;
   }
   .skill-div {
-    padding: 15px 20px;
-    height: 40px;
+    padding: 20px 30px;
+    height: 50px;
   }
   .skill-name {
     font-size: 20px;
@@ -590,6 +604,11 @@ html {
   .contacts-info {
     grid-template-columns: 1fr;
     width: 60%;
+    font-size: 20px;
+  }
+
+  /* FOOTER  */
+  footer {
     font-size: 20px;
   }
 }
