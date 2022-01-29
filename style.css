@@ -428,25 +428,26 @@ header.sticky + #home {
   border: 1px solid #c4c4c4;
   opacity: 0;
   transition: 0.42s ease-in-out;
+  z-index: 1;
 }
 
 .contact-card.show {
   opacity: 1;
 }
 .contact-name {
-  z-index: 1;
+  z-index: 0;
 }
 .contact-image {
   display: block;
   width: 75px;
   height: auto;
-  z-index: 1;
+  z-index: 0;
 }
 
 .contact-bg-div {
   position: absolute;
   top: 0;
-  z-index: 0;
+  z-index: -1;
   height: 100%;
   width: 100%;
   background-color: #6320ee;
@@ -461,6 +462,9 @@ header.sticky + #home {
   transform-origin: bottom center;
 }
 
+object {
+  pointer-events: none;
+}
 /* FOOTER  */
 footer {
   width: 100%;
