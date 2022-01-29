@@ -124,7 +124,7 @@ header {
 }
 
 .burger-button > div:nth-child(1).show {
-  transform: rotate(45deg) translate(3.5px, 10px);
+  transform: rotate(45deg) translate(29%, 100%);
 }
 
 .burger-button > div:nth-child(2).show {
@@ -133,7 +133,7 @@ header {
 }
 
 .burger-button > div:nth-child(3).show {
-  transform: rotate(-45deg) translate(3.5px, -10px);
+  transform: rotate(-45deg) translate(29%, -100%);
 }
 
 header.sticky {
