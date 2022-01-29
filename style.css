@@ -70,8 +70,8 @@ header {
 .navigation-options {
   display: flex;
   align-items: flex-end;
-  font-family: var(--montserrat);
-  font-weight: 600;
+  font-family: var(--readexpro);
+  font-weight: 400;
   color: #232020;
 
   gap: 30px;
@@ -387,10 +387,7 @@ header.sticky + #home {
   transition: 0.3s ease-in-out;
 }
 
-/* FOOTER  */
-footer {
-  width: 100%;
-}
+/* CONTACTS  */
 #contacts {
   padding-top: 100px;
   margin: 0 auto;
@@ -398,6 +395,68 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.contacts-info {
+  width: min(80%, 600px);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  font-family: var(--comfortaa);
+  font-size: 25px;
+  color: #fdfffc;
+}
+
+.contact-div {
+  position: relative;
+
+  padding: 30px 0;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+
+  border: 1px solid #c4c4c4;
+}
+
+.contact-div a {
+  text-decoration: none;
+  color: inherit;
+
+  z-index: 1;
+}
+
+.contact-image {
+  display: block;
+  width: 75px;
+  height: auto;
+  z-index: 1;
+}
+
+.contact-bg-div {
+  position: absolute;
+  top: 0;
+  z-index: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #6320ee;
+  transform: scaleY(0);
+  transform-origin: bottom center;
+
+  transition: 0.42s ease-in-out;
+}
+
+.contact-div:hover .contact-bg-div {
+  transform: scaleY(1);
+  transform-origin: bottom center;
+}
+
+/* FOOTER  */
+footer {
+  width: 100%;
 }
 
 /* BODY  */
@@ -437,25 +496,12 @@ html {
   }
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(-180deg);
-  }
-  50% {
-    transform: translateY(-30px);
-  }
-  70% {
-    transform: translateY(0);
-  }
-  75% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
 /* MEDIA QUERIES  */
 @media screen and (max-width: 960px) {
+  header {
+    gap: 0;
+    justify-content: space-between;
+  }
   /* HOME  */
   #home {
     display: flex;
@@ -537,6 +583,13 @@ html {
 
   /* HOBBIES  */
   .hobbies-info {
+    font-size: 20px;
+  }
+
+  /* CONTACTS  */
+  .contacts-info {
+    grid-template-columns: 1fr;
+    width: 60%;
     font-size: 20px;
   }
 }

@@ -251,7 +251,12 @@ const processAllSections = () => {
     {
       name: "Codechef",
       link: "https://www.codechef.com/users/siddhant_tohan",
-      icon: "./assets/linkedin.svg",
+      icon: "./assets/codechef.svg",
+    },
+    {
+      name: "Codeforces",
+      link: "https://codeforces.com/profile/Siddhant_Tohan",
+      icon: "./assets/codeforces.svg",
     },
   ];
   allRefs.sections.forEach((section) => {
@@ -320,20 +325,41 @@ const processAllSections = () => {
       pageBuilder.addHobbiesObserver(section.children[0]);
     } else {
       contacts.forEach((contact) => {
+        let path;
         const contactDiv = document.createElement("div");
         contactDiv.className = "contact-div";
 
+        const link = document.createElement("a");
         const contactName = document.createElement("div");
         contactName.className = "contact-name";
         contactName.textContent = contact.name;
 
-        const contactImage = document.createElement("object");
-        contactImage.type = "image/svg+xml";
+        link.href = contact.link;
+        link.target = "_blank";
+        link.appendChild(contactName);
 
+        const contactImage = document.createElement("object");
+        contactImage.classList.add("contact-image");
+        contactImage.type = "image/svg+xml";
         contactImage.data = contact.icon;
+        contactImage.addEventListener("load", () => {
+          path = contactImage.contentDocument.querySelector("path");
+        });
+
+        const contactBgDiv = document.createElement("div");
+        contactBgDiv.className = "contact-bg-div";
 
         contactDiv.appendChild(contactImage);
-        contactDiv.appendChild(contactName);
+        contactDiv.appendChild(link);
+        contactDiv.appendChild(contactBgDiv);
+
+        contactDiv.addEventListener("mouseenter", () => {
+          path.style.fill = "#fdfffc";
+          path.style.transition = "0.42s ease-in-out";
+        });
+        contactDiv.addEventListener("mouseleave", () => {
+          path.style.fill = "#6320ee";
+        });
         allRefs.contactsInfo.appendChild(contactDiv);
       });
       pageBuilder.addContactsObserver(section.children[0]);
