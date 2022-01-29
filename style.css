@@ -37,7 +37,6 @@ section {
   color: #6320ee;
   height: 1.5em;
   opacity: 0;
-  align-self: flex-start;
 
   transition: 0.42s ease-in-out;
   text-transform: uppercase;
