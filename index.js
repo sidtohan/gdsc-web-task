@@ -326,17 +326,15 @@ const processAllSections = () => {
     } else {
       contacts.forEach((contact) => {
         let path;
-        const contactDiv = document.createElement("div");
-        contactDiv.className = "contact-div";
+        const contactCard = document.createElement("a");
+        contactCard.className = "contact-card";
 
-        const link = document.createElement("a");
         const contactName = document.createElement("div");
         contactName.className = "contact-name";
         contactName.textContent = contact.name;
 
-        link.href = contact.link;
-        link.target = "_blank";
-        link.appendChild(contactName);
+        contactCard.href = contact.link;
+        contactCard.target = "_blank";
 
         const contactImage = document.createElement("object");
         contactImage.classList.add("contact-image");
@@ -349,18 +347,19 @@ const processAllSections = () => {
         const contactBgDiv = document.createElement("div");
         contactBgDiv.className = "contact-bg-div";
 
-        contactDiv.appendChild(contactImage);
-        contactDiv.appendChild(link);
-        contactDiv.appendChild(contactBgDiv);
+        contactCard.appendChild(contactImage);
+        contactCard.appendChild(contactName);
+        contactCard.appendChild(contactBgDiv);
 
-        contactDiv.addEventListener("mouseenter", () => {
+        contactCard.addEventListener("mouseenter", () => {
           path.style.fill = "#fdfffc";
           path.style.transition = "0.42s ease-in-out";
         });
-        contactDiv.addEventListener("mouseleave", () => {
+        contactCard.addEventListener("mouseleave", () => {
           path.style.fill = "#6320ee";
         });
-        allRefs.contactsInfo.appendChild(contactDiv);
+        pageBuilder.addContactsObserver(contactCard);
+        allRefs.contactsInfo.appendChild(contactCard);
       });
       pageBuilder.addContactsObserver(section.children[0]);
     }

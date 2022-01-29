@@ -13,6 +13,11 @@ ol {
   list-style: none;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 :root {
   --comfortaa: "Comfortaa", Verdana, Geneva, Tahoma, sans-serif;
   --montserrat: "Montserrat", Verdana, Geneva, Tahoma, sans-serif;
@@ -409,7 +414,7 @@ header.sticky + #home {
   color: #fdfffc;
 }
 
-.contact-div {
+.contact-card {
   position: relative;
 
   padding: 30px 0;
@@ -421,15 +426,16 @@ header.sticky + #home {
   gap: 20px;
 
   border: 1px solid #c4c4c4;
+  opacity: 0;
+  transition: 0.42s ease-in-out;
 }
 
-.contact-div a {
-  text-decoration: none;
-  color: inherit;
-
+.contact-card.show {
+  opacity: 1;
+}
+.contact-name {
   z-index: 1;
 }
-
 .contact-image {
   display: block;
   width: 75px;
@@ -450,7 +456,7 @@ header.sticky + #home {
   transition: 0.42s ease-in-out;
 }
 
-.contact-div:hover .contact-bg-div {
+.contact-card:hover .contact-bg-div {
   transform: scaleY(1);
   transform-origin: bottom center;
 }
