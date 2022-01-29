@@ -1,5 +1,5 @@
 # gdsc-web-task
-Repo of the portfolio site built for GDSC 2022 Web recruitment Round 1.
+Repo of the portfolio site built for GDSC 2022 Web recruitment Round 2.
 
 ## About 
 This project is made using simple html,css and javascript without use of any frameworks or libraries.
